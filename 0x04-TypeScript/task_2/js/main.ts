@@ -45,6 +45,31 @@ function createEmployee(salary: number | string): Teacher | Director {
   return new Director();
 }
 
+// type guard 
+function isDirector(employee: Teacher | Director): employee is Director {
+  return employee instanceof Director;
+}
+
+function executeWork(employee: Teacher | Director): void {
+  if (isDirector(employee)) {
+    console.log(employee.workDirectorTasks());
+  } else {
+    console.log(employee.workTeacherTasks());
+  }
+}
+
+function teachClass(todayClass: "Math" | "History"):void {
+    if (todayClass === "Math")
+        console.log(`Teaching ${todayClass}`);
+    else
+        console.log(`Teaching ${todayClass}`);
+}
+
 console.log(createEmployee(200));   
 console.log(createEmployee(1000));   
-console.log(createEmployee('$500')); 
+console.log(createEmployee('500MAD')); 
+console.log(isDirector(createEmployee('400MAD')));
+executeWork(createEmployee(200));
+executeWork(createEmployee(1000));
+teachClass('Math');
+teachClass('History');
